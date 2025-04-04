@@ -1,3 +1,6 @@
+Here is the full content of `build.sh` from the repository `Demoworld12/Demoworld12`:
+
+```bash
 #!/bin/bash
 
 # Import required modules
@@ -95,3 +98,4 @@ main() {
 }
 
 main
+```
