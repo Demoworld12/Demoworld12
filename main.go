@@ -88,16 +88,94 @@ func main() {
     }
 }
 
+func clearScreen() {
+    fmt.Print("\033[H\033[2J")
+}
+
+func loadConfig() Config {
+    var config Config
+    file, err := os.Open("config.json")
+    if err != nil {
+        fmt.Println("Error loading config:", err)
+        return config
+    }
+    defer file.Close()
+
+    decoder := json.NewDecoder(file)
+    err = decoder.Decode(&config)
+    if err != nil {
+        fmt.Println("Error decoding config:", err)
+    }
+    return config
+}
+
+func promptToken() string {
+    fmt.Print("Enter your token: ")
+    reader := bufio.NewReader(os.Stdin)
+    token, _ := reader.ReadString('\n')
+    return strings.TrimSpace(token)
+}
+
+func saveConfig(config Config) {
+    file, err := os.Create("config.json")
+    if err != nil {
+        fmt.Println("Error saving config:", err)
+        return
+    }
+    defer file.Close()
+
+    encoder := json.NewEncoder(file)
+    err = encoder.Encode(&config)
+    if err != nil {
+        fmt.Println("Error encoding config:", err)
+    }
+}
+
+func getUserChoice() string {
+    reader := bufio.NewReader(os.Stdin)
+    choice, _ := reader.ReadString('\n')
+    return strings.TrimSpace(choice)
+}
+
+func settingsMenu(config *Config) {
+    fmt.Println("\n=== SETTINGS MENU ===")
+    fmt.Println("1. Toggle Auto Save")
+    fmt.Println("2. Toggle Debug Mode")
+    fmt.Println("3. Set Rate Limit")
+    fmt.Println("4. Toggle Stealth Mode")
+    fmt.Println("5. Back to Main Menu")
+    fmt.Print("\nChoice: ")
+
+    choice := getUserChoice()
+    switch choice {
+    case "1":
+        config.Settings.AutoSave = !config.Settings.AutoSave
+    case "2":
+        config.Settings.Debug = !config.Settings.Debug
+    case "3":
+        fmt.Print("Enter new rate limit: ")
+        reader := bufio.NewReader(os.Stdin)
+        rateLimitStr, _ := reader.ReadString('\n')
+        rateLimit, _ := strconv.Atoi(strings.TrimSpace(rateLimitStr))
+        config.Settings.RateLimit = rateLimit
+    case "4":
+        config.Settings.Stealth = !config.Settings.Stealth
+    case "5":
+        return
+    }
+    saveConfig(*config)
+}
+
 func showEnhancedBanner(startTime, currentUser string) {
     banner := fmt.Sprintf(`
     ████████╗██████╗  █████╗  ██████╗███████╗███████╗██╗   ██╗███████╗
-    ╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝╚██╗ ██╔╝██╔════╝
+    ╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝╚██╗ ██╔╝██╔═══╗
        ██║   ██████╔╝███████║██║     █████╗  █████╗   ╚████╔╝ █████╗  
        ██║   ██╔══██╗██╔══██║██║     ██╔══╝  ██╔══╝    ╚██╔╝  ██╔══╝  
        ██║   ██║  ██║██║  ██║╚██████╗███████╗███████╗   ██║   ███████╗
        ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚══════╝   ╚═╝   ╚══════╝
                     Enhanced Multi-Tool v3.0 for Termux
-    
+        
     Start Time: %s
     Current User: %s
     `, startTime, currentUser)
@@ -150,6 +228,33 @@ func osintMenu(config Config) {
             return
         }
     }
+}
+
+func domainOSINT() {
+    fmt.Print("Enter domain: ")
+    reader := bufio.NewReader(os.Stdin)
+    domain, _ := reader.ReadString('\n')
+    domain = strings.TrimSpace(domain)
+    fmt.Println("Performing OSINT on domain:", domain)
+    // Implementation would go here
+}
+
+func ipOSINT() {
+    fmt.Print("Enter IP address: ")
+    reader := bufio.NewReader(os.Stdin)
+    ip, _ := reader.ReadString('\n')
+    ip = strings.TrimSpace(ip)
+    fmt.Println("Performing OSINT on IP address:", ip)
+    // Implementation would go here
+}
+
+func usernameOSINT() {
+    fmt.Print("Enter username: ")
+    reader := bufio.NewReader(os.Stdin)
+    username, _ := reader.ReadString('\n')
+    username = strings.TrimSpace(username)
+    fmt.Println("Performing OSINT on username:", username)
+    // Implementation would go here
 }
 
 func networkTools() {
@@ -410,4 +515,4 @@ func systemInfo() {
     fmt.Println("Home:", os.Getenv("HOME"))
 }
 
-// ... Add other tool implementations inspired by Astri as needed ...
+// Add other tool implementations as needed
