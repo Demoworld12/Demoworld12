@@ -69,6 +69,12 @@ show_menu() {
     echo "======================================"
 }
 
+# Start function
+start() {
+    echo "Starting the Astri Enhanced Multi-Tool build process..."
+    main
+}
+
 # Main script execution
 main() {
     show_menu
@@ -94,4 +100,4 @@ main() {
     esac
 }
 
-main
+start
