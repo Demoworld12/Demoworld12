@@ -258,6 +258,33 @@ func usernameOSINT() {
 	// Implementation would go here
 }
 
+func phoneOSINT() {
+	fmt.Print("Enter phone number: ")
+	reader := bufio.NewReader(os.Stdin)
+	phone, _ := reader.ReadString('\n')
+	phone = strings.TrimSpace(phone)
+	fmt.Println("Performing OSINT on phone number:", phone)
+	// Implementation would go here
+}
+
+func socialMediaTracker() {
+	fmt.Print("Enter social media handle: ")
+	reader := bufio.NewReader(os.Stdin)
+	handle, _ := reader.ReadString('\n')
+	handle = strings.TrimSpace(handle)
+	fmt.Println("Tracking social media handle:", handle)
+	// Implementation would go here
+}
+
+func documentMetadata() {
+	fmt.Print("Enter document path: ")
+	reader := bufio.NewReader(os.Stdin)
+	docPath, _ := reader.ReadString('\n')
+	docPath = strings.TrimSpace(docPath)
+	fmt.Println("Extracting metadata from document:", docPath)
+	// Implementation would go here
+}
+
 func networkTools() {
 	for {
 		fmt.Println("\n=== NETWORK TOOLS ===")
@@ -290,6 +317,60 @@ func networkTools() {
 			return
 		}
 	}
+}
+
+func dnsLookup() {
+	fmt.Print("Enter domain: ")
+	reader := bufio.NewReader(os.Stdin)
+	domain, _ := reader.ReadString('\n')
+	domain = strings.TrimSpace(domain)
+	fmt.Println("Performing DNS lookup for domain:", domain)
+	// Implementation would go here
+}
+
+func whoisLookup() {
+	fmt.Print("Enter domain: ")
+	reader := bufio.NewReader(os.Stdin)
+	domain, _ := reader.ReadString('\n')
+	domain = strings.TrimSpace(domain)
+	fmt.Println("Performing WHOIS lookup for domain:", domain)
+	// Implementation would go here
+}
+
+func subnetCalc() {
+	fmt.Print("Enter subnet (e.g., 192.168.1.0/24): ")
+	reader := bufio.NewReader(os.Stdin)
+	subnet, _ := reader.ReadString('\n')
+	subnet = strings.TrimSpace(subnet)
+	fmt.Println("Calculating subnet information for:", subnet)
+	// Implementation would go here
+}
+
+func sslChecker() {
+	fmt.Print("Enter domain: ")
+	reader := bufio.NewReader(os.Stdin)
+	domain, _ := reader.ReadString('\n')
+	domain = strings.TrimSpace(domain)
+	fmt.Println("Checking SSL certificate for domain:", domain)
+	// Implementation would go here
+}
+
+func pingTest() {
+	fmt.Print("Enter host: ")
+	reader := bufio.NewReader(os.Stdin)
+	host, _ := reader.ReadString('\n')
+	host = strings.TrimSpace(host)
+	fmt.Println("Pinging host:", host)
+	// Implementation would go here
+}
+
+func traceroute() {
+	fmt.Print("Enter host: ")
+	reader := bufio.NewReader(os.Stdin)
+	host, _ := reader.ReadString('\n')
+	host = strings.TrimSpace(host)
+	fmt.Println("Performing traceroute to host:", host)
+	// Implementation would go here
 }
 
 func discordTools(config Config) {
@@ -393,6 +474,15 @@ func forensicsTools() {
 	}
 }
 
+func fileHashCalc() {
+	fmt.Print("Enter file path: ")
+	reader := bufio.NewReader(os.Stdin)
+	filePath, _ := reader.ReadString('\n')
+	filePath = strings.TrimSpace(filePath)
+	fmt.Println("Calculating hash for file:", filePath)
+	// Implementation would go here
+}
+
 func credentialTools() {
 	for {
 		fmt.Println("\n=== CREDENTIAL TOOLS ===")
@@ -447,6 +537,15 @@ func systemTools() {
 			return
 		}
 	}
+}
+
+func systemInfo() {
+	fmt.Println("\nSystem Information:")
+	hostname, _ := os.Hostname()
+	fmt.Println("Hostname:", hostname)
+	fmt.Println("OS:", os.Getenv("OS"))
+	fmt.Println("User:", os.Getenv("USER"))
+	fmt.Println("Home:", os.Getenv("HOME"))
 }
 
 func utilitiesMenu() {
@@ -535,118 +634,4 @@ func base64Tool() {
 		fmt.Println("Encoded:", encoded)
 	case "2":
 		decoded, err := base64.StdEncoding.DecodeString(text)
-		if err != nil {
-			fmt.Println("Error decoding:", err)
-			return
-		}
-		fmt.Println("Decoded:", string(decoded))
-	}
-}
-
-func systemInfo() {
-	fmt.Println("\nSystem Information:")
-	hostname, _ := os.Hostname()
-	fmt.Println("Hostname:", hostname)
-	fmt.Println("OS:", os.Getenv("OS"))
-	fmt.Println("User:", os.Getenv("USER"))
-	fmt.Println("Home:", os.Getenv("HOME"))
-}
-
-// Add other tool implementations as needed
-
-// Discord tool implementations
-
-func tokenManager(config Config) {
-	fmt.Println("Managing tokens...")
-	// Implementation would go here
-}
-
-func serverAnalyzer(token string) {
-	fmt.Println("Analyzing server...")
-	// Implementation would go here
-}
-
-func userLookup(token string) {
-	fmt.Println("Looking up user...")
-	// Implementation would go here
-}
-
-func webhookManager(config Config) {
-	fmt.Println("Managing webhooks...")
-	// Implementation would go here
-}
-
-func serverInviteManager(token string) {
-	fmt.Println("Managing invites...")
-	// Implementation would go here
-}
-
-func tokenChecker() {
-	fmt.Println("Checking tokens...")
-	// Implementation would go here
-}
-
-func nitroGenerator() {
-	fmt.Println("Generating Nitro codes...")
-	// Implementation would go here
-}
-
-func messageScheduler(token string) {
-	fmt.Println("Scheduling messages...")
-	// Implementation would go here
-}
-
-func channelCloner(token string) {
-	fmt.Println("Cloning channels...")
-	// Implementation would go here
-}
-
-func roleManager(token string) {
-	fmt.Println("Managing roles...")
-	// Implementation would go here
-}
-
-func autoResponder(token string) {
-	fmt.Println("Setting up auto responder...")
-	// Implementation would go here
-}
-
-func massDMTool(token string) {
-	fmt.Println("Sending mass DMs...")
-	// Implementation would go here
-}
-
-func serverBackup(token string) {
-	fmt.Println("Backing up server...")
-	// Implementation would go here
-}
-
-func emojiManager(token string) {
-	fmt.Println("Managing emojis...")
-	// Implementation would go here
-}
-
-func reactionRole(token string) {
-	fmt.Println("Setting up reaction roles...")
-	// Implementation would go here
-}
-
-func serverStats(token string) {
-	fmt.Println("Fetching server stats...")
-	// Implementation would go here
-}
-
-func messageLogger(token string) {
-	fmt.Println("Logging messages...")
-	// Implementation would go here
-}
-
-func autoModerator(token string) {
-	fmt.Println("Setting up auto moderator...")
-	// Implementation would go here
-}
-
-func keywordTracker(token string) {
-	fmt.Println("Tracking keywords...")
-	// Implementation would go here
-}
+		if
